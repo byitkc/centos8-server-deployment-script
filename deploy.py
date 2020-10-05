@@ -36,10 +36,10 @@ def configure_domain(domain, username=False, sssd_conf_path):
     try:
         system.os('realm join --username=' + username + ' ' + domain)
     except Exception as error:
+        command = 'realm join --username={} {}'.format(username, domain)
         print('There was a problem joining the system to the domain {}'
-              .format(domain)
-        print('The command that was run was: {}'
-              .format('realm join --username=' + username + ' ' + domain))
+              .format(domain))
+        print('The command that was run was {}'.format(command))
         print('Please see the error below for more information')
         print(error)
         exit(1)
