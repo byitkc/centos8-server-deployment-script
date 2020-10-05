@@ -79,7 +79,7 @@ def configure_network(ipaddr, gateway, dns1, dns2, hostname, domain, interface):
 
     print('Configuring network interface ' + interface)
 
-
+#? Untested
 def generate_ssh_keys():
     '''
     This function will re-generate the SSH keys for the host's identity.
@@ -98,7 +98,7 @@ def generate_ssh_keys():
         print(error)
         exit(1)
 
-
+#? Untested
 def print_conf(hostname,domain,fqdn,ipaddr,mask,dns1,dns2,dnsservers,username,interface):
     print("")
     print("To be Configured:")
@@ -114,7 +114,7 @@ def print_conf(hostname,domain,fqdn,ipaddr,mask,dns1,dns2,dnsservers,username,in
     print("Password is intentially not shown.")
     print("")
 
-
+#? Untested
 def prompt_sys_info():
     print("")
     print("Please provide all of the following information")
@@ -135,7 +135,7 @@ def prompt_sys_info():
     domain = '.'.join(_domain)
     return (hostname,domain,fqdn,interface,ipaddr,mask,dns1,dns2,dnsservers,username)
 
-
+#? WIP
 def test_network(ipaddr, gateway, dns1, dns2, domain):
     print('Ping test to local interface')
     print(os.system('ping -c 4 ' + ipaddr))
@@ -147,7 +147,7 @@ def test_network(ipaddr, gateway, dns1, dns2, domain):
     print('Ping/DNS test to DNS Server #2')
     print(os.system('ping -c 4 ' + dns2))
     print(os.system('dig ' + domain + ' @' + dns2))
-    
+
 
 def query_yes_no(question, default="no"):
     """Ask a yes/no question via input() and return their answer.
@@ -199,9 +199,9 @@ while not choice:
 
 
 if choice:
-    print ("")
-    print ("Great, we'll go ahead and proceed with the setup now.")
-    print ("")
+    print ('')
+    print ('Great, we\'ll go ahead and proceed with the setup now.')
+    print ('')
 else:
     print("Something went wrong and we got an unexpected result from your confirmation. If you believe this is a bug, please report it to the github!")
     raise ValueError
