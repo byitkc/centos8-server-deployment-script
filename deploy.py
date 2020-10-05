@@ -47,10 +47,11 @@ def configure_domain(domain, username=False, sssd_conf_path):
     #? WIP
     print('Configureing sssd.conf to not require the domain when logging in')
     try:
+        #? WIP
         print(
             '''The domain_configuration function is not yet setup to modify
             the sssd.conf. Please modify {} manually'''.format(ssd_conf_path)
-            
+        )            
     except Exception as error:
         print('There was a problem configuring /etc/sssd/sssd.conf')
         print('Please see the error below for more information')
