@@ -22,7 +22,7 @@ sssd_conf_path = '/etc/sssd/sssd.conf'
 # Functions #
 #############
 
-
+#? WIP
 def configure_domain(domain, username=False, sssd_conf_path):
     """
     This function will be used to:
@@ -64,7 +64,7 @@ def configure_domain(domain, username=False, sssd_conf_path):
 
     return True
 
-
+#? WIP
 def configure_network(ipaddr, gateway, dns1, dns2, hostname, domain, interface):
     """ This function is used to configure all required network settings on 
     the host. """
@@ -167,7 +167,7 @@ def query_yes_no(question, default="no"):
 ##################
 
 ''' Prompt for user input for system information as long as the confirmation is
-"no". '''
+"no".'''
 while not choice:
     sys_conf = prompt_sys_info()
     print_conf(sys_conf)
