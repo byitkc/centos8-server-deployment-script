@@ -16,11 +16,67 @@ import sys
 
 choice = False
 audoconnect = True
-
+sssd_conf_path = '/etc/sssd/sssd.conf'
 
 #############
 # Functions #
 #############
+
+
+def configure_domain(domain, username=False, sssd_conf_path):
+    """
+    This function will be used to:
+    1. Join the system to Active Directory
+    2. Copy the 'domain' file with the sudoers configuration to
+        '/etc/sudoers.d/domain
+    3. Configure {} to allow login without 
+    """
+
+    print('Joining system to Active Directory.')
+    try:
+        system.os('realm join --username=' + username + ' ' + domain)
+    except Exception as error:
+        print('There was a problem joining the system to the domain {}'
+              .format(domain)
+        print('The command that was run was: {}'
+              .format('realm join --username=' + username + ' ' + domain))
+        print('Please see the error below for more information')
+        print(error)
+        exit(1)
+    
+    #? WIP
+    print('Configureing sssd.conf to not require the domain when logging in')
+    try:
+        print(
+            '''The domain_configuration function is not yet setup to modify
+            the sssd.conf. Please modify {} manually'''.format(ssd_conf_path)
+            
+    except Exception as error:
+        print('There was a problem configuring /etc/sssd/sssd.conf')
+        print('Please see the error below for more information')
+        print(error)
+        exit(1)
+
+    # Printing the sssd.conf as defined in sssd_conf_path to allow the user 
+    # to manually check the file contents.
+    print('Please validate the sssd.conf')
+    print(system.os('cat ' + sssd_conf_path))
+
+    return True
+
+
+def configure_network(ipaddr, gateway, dns1, dns2, hostname, domain, interface):
+    """ This function is used to configure all required network settings on 
+    the host. """
+    print('Configuring hostname {}'.format(username))
+    try:
+        system.os('hostnamectl set-hostname {}'.format(hostname))
+    except Exception as error:
+        print('There was an error configuring the hostname.')
+        print('See the error below.)
+        print(error)
+
+    print('Configuring network interface ' + interface)
 
 
 def print_conf(hostname,domain,fqdn,ipaddr,mask,dns1,dns2,dnsservers,username,interface):
@@ -106,29 +162,12 @@ def query_yes_no(question, default="no"):
                              "(or 'y' or 'n').\n")
 
 
-def net_conf(ipaddr, gateway, dns1, dns2, hostname, domain, interface):
-    """ This function is used to configure all required network settings on the
-    host """
-    print('Configuring hostname')
-    try:
-        system.os('hostnamectl set-hostname ' + hostname)
-    except Exception as error:
-        print('There was an error configuring the hostname. See the error below.')
-        print(error)
-
-    print('Configuring network interface ' + interface)
-
-
-def sssd_conf():
-    ''' This function will be used to configure the SSSD configuration to enable
-    Login without using the domain name '''
-    return False
-
 ##################
 # Main Execution #
 ##################
 
-# Prompt for user input for system information as long as the confirmation is "No"
+''' Prompt for user input for system information as long as the confirmation is
+"no". '''
 while not choice:
     sys_conf = prompt_sys_info()
     print_conf(sys_conf)
