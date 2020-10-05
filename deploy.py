@@ -98,7 +98,6 @@ def generate_ssh_keys():
         exit(1)
 
 
-
 def print_conf(hostname,domain,fqdn,ipaddr,mask,dns1,dns2,dnsservers,username,interface):
     print("")
     print("To be Configured:")
