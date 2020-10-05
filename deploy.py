@@ -84,14 +84,12 @@ def generate_ssh_keys():
     '''
     This function will re-generate the SSH keys for the host's identity.
     '''
+    _rsa = 'ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa'
+    _dsa = 'ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa'
+    _ecdsa = 'ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa -b 521'
     try:
-        system.os(
-              '''
-              ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa && 
-              ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa && 
-              ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa -b 521
-              '''
-            )
+        system.os('{rsa} && {dsa} && {ecdsa}'.format(
+            rsa = _rsa, dsa = _dsa, ecdsa = _ecdsa))
     except Exception as error:
         print("There was a problem re-generating the host's SSH keys.")
         print("See the error below for more information.")
