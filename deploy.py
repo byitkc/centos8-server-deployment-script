@@ -107,11 +107,21 @@ def query_yes_no(question, default="no"):
 
 
 def net_conf(ipaddr, gateway, dns1, dns2, hostname, domain, interface):
+    """ This function is used to configure all required network settings on the
+    host """
     print('Configuring hostname')
-    system.os('hostnamectl set-hostname ' + hostname)
+    try:
+        system.os('hostnamectl set-hostname ' + hostname)
+    except Exception as error:
+        print('There was an error configuring the hostname. See the error below.')
+        print(error)
+
     print('Configuring network interface ' + interface)
 
 
+def sssd_conf():
+    ''' This function will be used to configure the SSSD configuration to enable
+    Login without using the domain name '''
 
 ##################
 # Main Execution #
