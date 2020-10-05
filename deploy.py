@@ -122,6 +122,7 @@ def net_conf(ipaddr, gateway, dns1, dns2, hostname, domain, interface):
 def sssd_conf():
     ''' This function will be used to configure the SSSD configuration to enable
     Login without using the domain name '''
+    return False
 
 ##################
 # Main Execution #
