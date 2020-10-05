@@ -74,7 +74,7 @@ def configure_network(ipaddr, gateway, dns1, dns2, hostname, domain, interface):
         system.os('hostnamectl set-hostname {}'.format(hostname))
     except Exception as error:
         print('There was an error configuring the hostname.')
-        print('See the error below.)
+        print('See the error below.')
         print(error)
 
     print('Configuring network interface ' + interface)
